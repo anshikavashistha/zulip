@@ -15,10 +15,11 @@ class JotformHookTests(WebhookTestCase):
 * **Student's Name**: Niloth P
 * **Type of Tutoring**: Online Tutoring
 * **Subject for Tutoring**: Math
-* **Grade**: 12""".strip()
+* **Grade**: 12
+* **Appointment time**: 16:30""".strip()
 
         self.check_webhook(
-            "response",
+            "response_with_colon",
             expected_title,
             expected_message,
             content_type="multipart/form-data",

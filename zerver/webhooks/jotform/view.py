@@ -27,6 +27,13 @@ def api_jotform_webhook(
     form_response = ""
     for field in fields:
         label, value = field.split(":", 1)
+        # Split only on the first colon to preserve colons in values
+        if ':' in field:
+            key, value = field.split(':', 1)  # Split on first colon
+            form_response += f"* {key.strip()}: {value.strip()}\n"
+        else:
+            # If no colon, handle as a single field without splitting
+            form_response += f"* {field.strip()}\n"
         # TODO: Add fixtures and tests for question-like fields and files
         separator = " " if label.endswith("?") else ": "
         form_response += f"* **{label}**{separator}{value}\n"
